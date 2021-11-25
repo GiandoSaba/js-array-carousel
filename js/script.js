@@ -91,15 +91,15 @@ buttonDown.addEventListener('click', function(){
             imageLast = true;
         }
     }
+
+    imageActive.classList.remove('active');
+    thumbActive.classList.remove('active');
+
     if (!imageLast) {
-        imageActive.classList.remove('active');
         nextImage.classList.add('active');
-        thumbActive.classList.remove('active');
         nextThumb.classList.add('active');
     } else {
-        imageActive.classList.remove('active');
         firstImage.classList.add('active');
-        thumbActive.classList.remove('active');
         firstThumb.classList.add('active');
     }
 
@@ -122,17 +122,42 @@ buttonUp.addEventListener('click', function(){
         }
     }
 
+    imageActive.classList.remove('active');
+    thumbActive.classList.remove('active');
+
     if(!imageFirst){
-        imageActive.classList.remove('active');
         prevImage.classList.add('active');
-        thumbActive.classList.remove('active');
         prevThumb.classList.add('active');
     } else {
-        imageActive.classList.remove('active');
         lastImage.classList.add('active');
-        thumbActive.classList.remove('active');
         lastThumb.classList.add('active');
     }
 
 });
 
+
+//BONUS cliccare sull'immagine della thumb e visualizzarla a schermo
+
+for (let i = 0; i < images.length; i++) {
+    thumbs[i].addEventListener('click', function() {
+
+        let active = false;
+        const thumbsClasses = thumbs[i].classList;
+        for (let i = 0; i < thumbsClasses.length; i++) {
+            if (thumbsClasses[i] == 'active') {
+                active = true;
+            }
+        }
+
+        if (!active) {
+            const imageActive = document.querySelector('.col-left .image-container.active');
+            images[i].classList.add('active');
+            imageActive.classList.remove('active');
+            const thumbActive = document.querySelector('.col-right .image-container.active');
+            thumbs[i].classList.add('active');
+            thumbActive.classList.remove('active');
+    
+        }
+    });
+        
+}
