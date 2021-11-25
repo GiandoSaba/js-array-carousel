@@ -69,6 +69,9 @@ thumbs[thumbs.length - 1].classList.add('last');
 // - testo.
 // Allo stesso tempo nelle miniature l’immagine attiva dovrà apparire in evidenza rispetto alle altre.
 
+//     BONUS:
+// Aggiungere il ciclo infinito del carosello.Ovvero se la miniatura attiva è la prima e l’utente clicca la freccia verso l’alto, la miniatura che deve attivarsi sarà l’ultima e viceversa per l’ultima miniatura se l’utente clicca la freccia verso il basso.
+
 const buttonUp = document.getElementById('buttonUp');
 const buttonDown = document.getElementById('buttonDown');
 
@@ -76,8 +79,10 @@ buttonDown.addEventListener('click', function(){
 
     let imageLast = false
     const imageActive = document.querySelector('.col-left .image-container.active');
+    const firstImage = document.querySelector('.col-left .image-container.first');
     const nextImage = imageActive.nextElementSibling;
     const thumbActive = document.querySelector('.col-right .image-container.active');
+    const firstThumb = document.querySelector('.col-right .image-container.first')
     const nextThumb = thumbActive.nextElementSibling;
     const imageActiveClasses = imageActive.classList;
     
@@ -91,6 +96,11 @@ buttonDown.addEventListener('click', function(){
         nextImage.classList.add('active');
         thumbActive.classList.remove('active');
         nextThumb.classList.add('active');
+    } else {
+        imageActive.classList.remove('active');
+        firstImage.classList.add('active');
+        thumbActive.classList.remove('active');
+        firstThumb.classList.add('active');
     }
 
 });
@@ -99,8 +109,10 @@ buttonUp.addEventListener('click', function(){
 
     let imageFirst = false
     const imageActive = document.querySelector('.col-left .image-container.active');
+    const lastImage = document.querySelector('.col-left .image-container.last');
     const prevImage = imageActive.previousElementSibling;
     const thumbActive = document.querySelector('.col-right .image-container.active');
+    const lastThumb = document.querySelector('.col-right .image-container.last');
     const prevThumb = thumbActive.previousElementSibling;
     const imageActiveClasses = imageActive.classList;
 
@@ -115,10 +127,12 @@ buttonUp.addEventListener('click', function(){
         prevImage.classList.add('active');
         thumbActive.classList.remove('active');
         prevThumb.classList.add('active');
+    } else {
+        imageActive.classList.remove('active');
+        lastImage.classList.add('active');
+        thumbActive.classList.remove('active');
+        lastThumb.classList.add('active');
     }
 
 });
 
-
-//     BONUS:
-// Aggiungere il ciclo infinito del carosello.Ovvero se la miniatura attiva è la prima e l’utente clicca la freccia verso l’alto, la miniatura che deve attivarsi sarà l’ultima e viceversa per l’ultima miniatura se l’utente clicca la freccia verso il basso.
