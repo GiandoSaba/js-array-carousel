@@ -73,26 +73,49 @@ const buttonUp = document.getElementById('buttonUp');
 const buttonDown = document.getElementById('buttonDown');
 
 buttonDown.addEventListener('click', function(){
+
+    let imageLast = false
     const imageActive = document.querySelector('.col-left .image-container.active');
     const nextImage = imageActive.nextElementSibling;
-    imageActive.classList.remove('active');
-    nextImage.classList.add('active');
     const thumbActive = document.querySelector('.col-right .image-container.active');
     const nextThumb = thumbActive.nextElementSibling;
-    thumbActive.classList.remove('active');
-    nextThumb.classList.add('active');
+    const imageActiveClasses = imageActive.classList;
+    
+    for (let i = 0; i < imageActiveClasses.length; i++) {
+        if (imageActiveClasses[i] == 'last') {
+            imageLast = true;
+        }
+    }
+    if (!imageLast) {
+        imageActive.classList.remove('active');
+        nextImage.classList.add('active');
+        thumbActive.classList.remove('active');
+        nextThumb.classList.add('active');
+    }
 
 });
 
 buttonUp.addEventListener('click', function(){
+
+    let imageFirst = false
     const imageActive = document.querySelector('.col-left .image-container.active');
     const prevImage = imageActive.previousElementSibling;
-    imageActive.classList.remove('active');
-    prevImage.classList.add('active');
     const thumbActive = document.querySelector('.col-right .image-container.active');
     const prevThumb = thumbActive.previousElementSibling;
-    thumbActive.classList.remove('active');
-    prevThumb.classList.add('active');
+    const imageActiveClasses = imageActive.classList;
+
+    for (let i = 0; i < imageActiveClasses.length; i++) {
+        if (imageActiveClasses[i] == 'first') {
+            imageFirst = true;
+        }
+    }
+
+    if(!imageFirst){
+        imageActive.classList.remove('active');
+        prevImage.classList.add('active');
+        thumbActive.classList.remove('active');
+        prevThumb.classList.add('active');
+    }
 
 });
 
